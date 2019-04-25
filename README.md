@@ -1,68 +1,108 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# StageR!
 
-## Available Scripts
+## Back-end
 
-In the project directory, you can run:
+### dependencies:
 
-### `npm start`
+- express
+- express session
+- massive
+- dotenv
+- bcrypt
+- express-session
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+my endpoints:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+posts:
 
-### `npm test`
+app.get('/api/posts', postController.getPosts) ---> Get all posts on feed
+app.get('/api/posts/:id', postController.getPost) ---> Get one post
+app.post('/api/posts', postController.createPost) ---> Create a new post
+app.put('/api/posts/:id, postController.editPost) ---> edit existing post
+app.delete('/api/posts/:id, postController.deletePost) ---> delete the post
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+auth:
 
-### `npm run build`
+app.post('/auth/login', authController.login) ---> Login/ Sign in
+app.post('/auth/register', authController.register) ---> Register/Create a profile
+app.get('/auth/logout', authController.logout) ---> user log out
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+comments:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+app.post('/api/comment', commentController.commentOnPost) ---> comment on a post
+app.put('/api/comment/:id', commentController.editComment) ---> Edit your comment
+app.delete('/api/comment/:id, commentController.deleteComment) ---> Delete comment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### server file structure:
 
-### `npm run eject`
+- /server
+  - index.js
+  - controllers/
+    - authController.js
+    - postController.js
+    - commentController.js
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### dotenv file
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```text
+SESSION_SECRET=
+SERVER_PORT=
+CONNECTION_STRING= (append => ?ssl=true)
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Front-end!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### dependencies:
 
-## Learn More
+- axios
+- react-router-dom
+- redux
+- react-redux
+- redux-promise-middleware
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Components and file structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- App.js
 
-### Code Splitting
+#### Components/
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- Header/
+  - Header.js
+  - Header.scss
+- Dashboard/
+  - Dashboard.js
+  - Dashboard.scss
+- Feed/
+  - Feed.js
+  - Feed.scss
+- Post/
+  - Post.js
+  - Post.scss
+- Comment/
+  - Comment.js
+  - Comment.scss
+- NavBar/
+  - NavBar.js
+  - NavBar.scss
+- UserProfile/
+  - UserProfile.js
+  - UserProfile.scss
+- Welcome/
+  - Welcome.js
+  - Welcome.scss
+- Login/
+  - Login.js
+  - Login.scss
+- Register/
+  - Register.js
+  - Register.scss
+- SearchBar/
 
-### Analyzing the Bundle Size
+  - SearchBar.js
+  - SearchBar.scss
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+  Ducks/
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  - store.js
+  - reducer.js
+    (multiple reducers?!)

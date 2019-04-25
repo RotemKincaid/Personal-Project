@@ -1,28 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import routes from "./routes";
+import { withRouter } from "react-router-dom";
+import Header from "./Components/Header/Header";
+// import Feed from "./Components/Feed/Feed";
+// import Dashboard from "./Components/Dashboard/Dashboard";
+// import Welcome from "./Components/Welcome/Welcome";
+// import Login from "./Components/Login/Login";
+
+import "./App.css";
 
 class App extends Component {
   render() {
+    console.log(this.props.location.pathname);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.props.location.pathname === "/" ? <div /> : <Header />}
+        {routes}
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

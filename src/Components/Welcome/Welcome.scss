@@ -1,0 +1,79 @@
+.main-container {
+  height: 100vh;
+  width: 100%;
+  background-image: url("./Stage-With-Colored-Lights.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+
+  .inner-container {
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+  }
+  h1 {
+    color: white;
+    font-size: 46px;
+  }
+
+  p {
+    text-align: center;
+    color: white;
+    text-emphasis: emphasis;
+    font-size: 20px;
+  }
+  .login {
+    height: 40px;
+    width: 70px;
+    background-color: orange;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+    border-color: white;
+    margin: 10px;
+    a {
+      text-decoration: none;
+      color: white;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    }
+  }
+  .register {
+    height: 40px;
+    width: 70px;
+    background-color: orange;
+    font-size: 15px;
+    border-color: white;
+    margin: 10px;
+    a {
+      text-decoration: none;
+      color: white;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    }
+  }
+  .link-btn {
+    height: 25px;
+    // width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-right: 10px;
+  }
+  .to-dash {
+    height: 25px;
+    // width: 120;
+    background-color: rgba(250, 245, 250, 0.37);
+    // margin-right: 10px;
+    a {
+      text-decoration: none;
+      color: blue;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    }
+  }
+}
