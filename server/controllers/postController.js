@@ -26,14 +26,17 @@ module.exports = {
 
   createPost: (req, res) => {
     const db = req.app.get("db");
-    const { post_content, file } = req.body;
+    console.log("==========>", req.body);
+    const { post_content, file, user_id } = req.body;
 
-    db.create_post([post_content, file])
+    db.create_post([post_content, file, user_id])
       .then(posts => {
         res.status(200).send(posts);
       })
-      .catch(err => console.log("Error in create_post.sql", err));
-    // res.status(500).send({ message: "an error has occured on the server" });
+      .catch(err => {
+        console.log("Error in create_post.sql", err);
+        res.status(500).send({ message: "an error has occured on the server" });
+      });
   },
 
   editPost: (req, res) => {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../Header/logo.png";
+import logo from "../Header/another-logo.png";
 // import routes from "../../routes";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -18,6 +18,7 @@ class Header extends Component {
     return (
       <div className="header-container">
         <img src={logo} alt="" />
+        <h1>StageR</h1>
         <nav>
           <ul>
             <li>

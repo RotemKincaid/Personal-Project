@@ -49,7 +49,7 @@ class UserProfile extends Component {
   };
 
   submit = e => {
-    const { user_id } = this.props.user;
+    const { user_id } = this.props.user.user;
     const { fullName, talent, genre, influence, profile_pic } = this.state;
     e.preventDefault();
     axios.put(`/api/userprofile/${user_id}`, {
@@ -63,14 +63,14 @@ class UserProfile extends Component {
 
   render() {
     // const { loggedInUser } = this.state;
-    const { user } = this.props;
+    const { user } = this.props.user;
     // console.log(this.props);
     // console.log(loggedInUser);
     return (
       <div>
         This is your profile
         {user ? (
-          <h2>Welcome back, {user.username}! </h2>
+          <h2>Welcome, {user.username}! </h2>
         ) : (
           <h2>
             Hello there! please <Link to="/login">log in</Link> to view your

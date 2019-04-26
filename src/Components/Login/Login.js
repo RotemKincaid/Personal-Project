@@ -3,7 +3,7 @@ import axios from "axios";
 import { setUser } from "../../ducks/userReducer";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import "../Login/Login.scss";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +37,11 @@ class Login extends Component {
     console.log(this.props);
     let { loggedInUser, username, password } = this.state;
     return (
-      <div>
-        <h2>Welcome back!</h2>
-        <h5>Please log in with your credentials</h5>
-        <div>
+      <div className="login-outer">
+        <div className="login-inner">
+          <h2>Welcome back!</h2>
+          <h5>Please log in with your credentials</h5>
+
           <input
             placeholder="stagername"
             name="username"

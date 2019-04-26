@@ -1,0 +1,11 @@
+.login-outer {
+  background-color: rgb(236, 210, 161);
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+  .login-inner {
+    max-width: 700px;
+    background-image: url("./art.jpg");
+  }
+}
