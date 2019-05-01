@@ -27,6 +27,12 @@ class Login extends Component {
     });
   }
 
+  logout = () => {
+    axios.get("/auth/logout").then(() => {
+      this.props.setUser(null);
+    });
+  };
+
   changeHandler = (name, value) => {
     this.setState({
       [name]: value
@@ -58,10 +64,10 @@ class Login extends Component {
           />
 
           {loggedInUser.username ? (
-            <button>Logout</button>
+            <button onClick={() => this.logout()}>Logout</button>
           ) : (
             <button onClick={() => this.login()}>
-              <Link to="/userprofile">Login</Link>
+              <Link to="/dashboard">Login</Link>
             </button>
           )}
         </div>

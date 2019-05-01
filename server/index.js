@@ -6,6 +6,7 @@ require("dotenv").config();
 const aC = require("./controllers/authController");
 const postController = require("./controllers/postController");
 const commentController = require("./controllers/commentController");
+const cloudinary = require("cloudinary");
 
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
 app.use(express.json());
@@ -33,6 +34,7 @@ app.get("/auth/logout", aC.logout);
 app.get("/auth/usersession", (req, res) => {
   res.status(200).send(req.session.user);
 });
+app.get("/user/profile/:id", aC.getProfile);
 
 // users:
 app.put("/api/userprofile/:id", aC.addInfo);
@@ -48,10 +50,28 @@ app.delete("/api/posts/:id", postController.deletePost);
 
 // comment paths:
 
-app.get("/api/comment", commentController.getComments);
+app.get("/api/comment/:id", commentController.getComments);
+
 app.post("/api/comment", commentController.commentOnPost);
 app.put("/api/comment/:id", commentController.editComment);
 app.delete("/api/comment/:id", commentController.deleteComment);
+
+app.get("/api/upload", (req, res) => {
+  const timestamp = Math.round(new Date().getTime() / 1000);
+
+  const api_secret = process.env.CLOUDINARY_SECRET_API;
+
+  const signature = cloudinary.utils.api_sign_request(
+    { timestamp: timestamp },
+    api_secret
+  );
+
+  const payload = {
+    signature: signature,
+    timestamp: timestamp
+  };
+  res.json(payload);
+});
 
 app.listen(
   SERVER_PORT,

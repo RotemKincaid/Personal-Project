@@ -4,6 +4,8 @@ module.exports = {
 
     db.get_posts()
       .then(posts => {
+        // console.log(posts);
+
         res.status(200).send(posts);
       })
       .catch(err => console.log("looooooool", err));
@@ -27,9 +29,9 @@ module.exports = {
   createPost: (req, res) => {
     const db = req.app.get("db");
     console.log("==========>", req.body);
-    const { post_content, file, user_id } = req.body;
+    const { post_content, file, user_id, cloudinary_url } = req.body;
 
-    db.create_post([post_content, file, user_id])
+    db.create_post([post_content, file, user_id, cloudinary_url[0]])
       .then(posts => {
         res.status(200).send(posts);
       })

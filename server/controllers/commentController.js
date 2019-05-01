@@ -1,7 +1,9 @@
 module.exports = {
   getComments: (req, res) => {
     const db = req.app.get("db");
-    db.get_comments()
+    const { id } = req.params;
+
+    db.get_comments([id])
       .then(comments => {
         res.status(200).send(comments);
       })
@@ -16,11 +18,13 @@ module.exports = {
   commentOnPost: (req, res) => {
     const db = req.app.get("db");
     const { comment, user_post } = req.body;
-    req.session.user = {
-      id: 1
-    };
-    const userId = req.session.user.id;
-    console.log(typeof user_post);
+    console.log("******", req.body);
+
+    // req.session.user = {
+    //   id: 1
+    // };
+    const userId = req.session.user.user_id;
+    // console.log(typeof user_post);
     db.comment_on_post([comment, userId, user_post])
       .then(comments => {
         res.status(200).send(comments);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../Header/another-logo.png";
+import logo from "../Header/newest-logo.png";
 // import routes from "../../routes";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -9,16 +9,33 @@ import "../Header/Header.scss";
 import axios from "axios";
 
 class Header extends Component {
+  // constructor(){
+  //   super()
+
+  //   this.state = {
+  //     is
+  //   }
+  // }
   componentDidMount() {
     axios.get("/auth/usersession").then(res => {
-      this.props.setUser(res.data);
+      // this.props.setUser(res.data);
+      axios.get(`/user/profile/${res.data.user_id}`).then(user => {
+        console.log("HEYYYYYY", user.data[0]);
+        this.props.setUser(user.data[0]);
+      });
+      console.log(">>>>>", res.data);
     });
   }
   render() {
+    const { user } = this.props;
+    console.log("NEW LABEL", this.props.user.user);
     return (
       <div className="header-container">
-        <img src={logo} alt="" />
-        <h1>StageR</h1>
+        <Link to="/">
+          <img src={logo} alt="" />
+        </Link>
+        <h1>{user.username}</h1>
+
         <nav>
           <ul>
             <li>
@@ -34,6 +51,14 @@ class Header extends Component {
             </li>
           </ul>
         </nav>
+        <div className="btns">
+          <button className="login-btn">
+            <Link to="/login">Login</Link>
+          </button>
+          <button className="register-btn">
+            <Link to="/register">Register</Link>
+          </button>
+        </div>
       </div>
     );
   }

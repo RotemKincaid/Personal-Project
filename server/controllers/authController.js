@@ -13,9 +13,11 @@ module.exports = {
     bcrypt.genSalt(saltRounds).then(salt => {
       bcrypt.hash(password, salt).then(hashedPassword => {
         db.create_user([username, email, hashedPassword]).then(logInUSer => {
+          console.log(logInUSer);
           req.session.user = {
-            id: logInUSer[0].user_id,
-            username: logInUSer[0].username
+            user_id: logInUSer[0].user_id,
+            username: logInUSer[0].username,
+            profile_pic: logInUSer[0].profile_pic
           };
           res.status(200).send(req.session.user);
         });
@@ -34,10 +36,13 @@ module.exports = {
       res.status(200).send("username not found, please try again!");
     }
     let result = bcrypt.compare(password, userFound[0].hashed_password);
+    console.log(userFound);
+
     if (result) {
       req.session.user = {
         user_id: userFound[0].user_id,
-        username: userFound[0].username
+        username: userFound[0].username,
+        profile_pic: userFound[0].profile_pic
       };
       res.status(200).send(req.session.user);
     } else {
@@ -57,5 +62,13 @@ module.exports = {
     const { id } = req.params;
 
     db.update_user([fullName, talent, genre, influence, profile_pic, id]);
+  },
+  getProfile: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+
+    db.get_user_profile([id]).then(user => {
+      res.status(200).send(user);
+    });
   }
 };

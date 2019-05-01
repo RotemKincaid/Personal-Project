@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
 import { setUser } from "../../ducks/userReducer";
+import "../Register/Register.scss";
 
 class Register extends Component {
   constructor(props) {
@@ -53,22 +53,35 @@ class Register extends Component {
   render() {
     console.log(this.props);
     return (
-      <div>
-        Give yourself a StageR Name!
-        <br />
-        <input placeholder="StageR Name" onChange={e => this.nameHandler(e)} />
-        <br />
-        <input placeholder="your email" onChange={e => this.emailHandler(e)} />
-        <br />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={e => this.passwordHandler(e)}
-        />
-        <br />
-        <button type="submit" onClick={this.register}>
-          <Link to="/userprofile">Save and continue</Link>
-        </button>
+      <div className="outer-register">
+        <div className="inner-register">
+          <h1>Register</h1>
+          <br />
+          <input
+            placeholder="your stager Name..."
+            onChange={e => this.nameHandler(e)}
+          />
+          <br />
+          <input
+            placeholder="your email..."
+            onChange={e => this.emailHandler(e)}
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="your password..."
+            onChange={e => this.passwordHandler(e)}
+          />
+          <br />
+          <div className="btns">
+            <button type="submit" onClick={this.register}>
+              <Link to="/profileform">complete your profile now?</Link>
+            </button>
+            <button>
+              <Link to="/dashborad">go to dashboard</Link>
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,0 +1,50 @@
+.profile-form {
+  min-height: 100vh;
+  width: 100%;
+  background-color: papayawhip;
+
+  form {
+    padding-top: 30px;
+    max-width: 900px;
+    height: 1100px;
+    background-color: rgb(160, 212, 247);
+    margin: 0 auto;
+    display: flex;
+    // justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 20px;
+
+    h4 {
+      font-size: 36px;
+    }
+
+    input {
+      height: 50px;
+      width: 300px;
+      font-size: 20px;
+      padding-left: 10px;
+    }
+
+    #dropzone {
+      height: 100px;
+      width: 600px;
+      background-color: rgba(128, 128, 128, 0.377);
+      border: 2.2px lightgray dashed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    button {
+      height: 40px;
+      width: 120px;
+      border-radius: 20px;
+      background-color: purple;
+      color: white;
+      font-size: 20px;
+    }
+  }
+}
