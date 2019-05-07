@@ -46,6 +46,9 @@ app.get("/api/posts/:id", postController.getPost);
 app.post("/api/posts", postController.createPost);
 app.put("/api/posts/:id", postController.editPost);
 app.delete("/api/posts/:id", postController.deletePost);
+
+//get posts by user id
+app.get("/api/posts/:id", postController.getPostByUser);
 //(`/api/posts/${id}`)
 
 // comment paths:
@@ -54,7 +57,7 @@ app.get("/api/comment/:id", commentController.getComments);
 
 app.post("/api/comment", commentController.commentOnPost);
 app.put("/api/comment/:id", commentController.editComment);
-app.delete("/api/comment/:id", commentController.deleteComment);
+app.delete("/api/comment/:comment_id", commentController.deleteComment);
 
 app.get("/api/upload", (req, res) => {
   const timestamp = Math.round(new Date().getTime() / 1000);

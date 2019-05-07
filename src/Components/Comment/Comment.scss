@@ -1,11 +1,63 @@
 .comment-container {
-  color: #333;
-  background-color: rgba(176, 196, 240, 0.658);
-  padding: 15px;
-  margin-bottom: 15px;
+  background-color: rgba(22, 22, 22, 0.24);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
   border-radius: 10px;
-  list-style: none;
-  margin-top: 15px;
-  margin-right: 8px;
-  margin-left: 20px;
+  font-size: 15px;
+
+  .comments {
+    color: white;
+    min-height: 50px;
+    width: 900px;
+    // border-width: 2ch;
+    // border-color: black;
+
+    background-color: rgba(70, 71, 73, 0.452);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    list-style: none;
+    margin-top: 15px;
+    margin-right: 8px;
+    margin-left: 20px;
+
+    .content-and-delete {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .content {
+        overflow-wrap: normal;
+        max-width: 700px;
+      }
+    }
+
+    .time-and-user {
+      display: flex;
+      justify-content: space-between;
+
+      h3 {
+        height: 20px;
+        min-width: 70px;
+        background-color: rgba(255, 255, 255, 0.445);
+        color: black;
+        border-radius: 5px;
+      }
+    }
+
+    .profile_pic {
+      height: 50px;
+      width: 55px;
+      border-radius: 50%;
+    }
+
+    .delete-comment {
+      height: 20px;
+      min-width: 60px;
+      background-color: orangered;
+      color: white;
+      border-radius: 10px;
+    }
+  }
 }

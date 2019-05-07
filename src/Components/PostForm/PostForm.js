@@ -5,8 +5,7 @@ import "../PostForm/PostForm.scss";
 import axios from "axios";
 import { withRouter } from "react-router";
 import Dropzone from "react-dropzone";
-const CLOUDINARY_UPLOAD_URL =
-  "https://api.cloudinary.com/v1_1/durwtlqt9/image/upload";
+// import loading from "../PostForm/loading.gif";
 
 class PostForm extends Component {
   constructor() {
@@ -14,9 +13,9 @@ class PostForm extends Component {
 
     this.state = {
       content: "",
-      file: "",
       cloudinary_url: [],
-      uploadedFile: ""
+      uploadedFile: "",
+      isLoading: false
     };
   }
   onImageDrop = files => {
@@ -35,6 +34,20 @@ class PostForm extends Component {
       formData.append("api_key", "742439171821394");
       formData.append("timestamp", response.data.timestamp);
       formData.append("file", file);
+
+      console.log("the FILE", file);
+
+      let CLOUDINARY_UPLOAD_URL = "";
+      if (file.type === "audio/mp3" || file.type === "audio/wav") {
+        CLOUDINARY_UPLOAD_URL =
+          "https://api.cloudinary.com/v1_1/durwtlqt9/video/upload";
+      } else if (file.type === "video/mp4" || file.type === "video/quicktime") {
+        CLOUDINARY_UPLOAD_URL =
+          "https://api.cloudinary.com/v1_1/durwtlqt9/video/upload";
+      } else {
+        CLOUDINARY_UPLOAD_URL =
+          "https://api.cloudinary.com/v1_1/durwtlqt9/image/upload";
+      }
 
       axios
         .post(CLOUDINARY_UPLOAD_URL, formData)
@@ -67,31 +80,36 @@ class PostForm extends Component {
   // }
 
   createPost(e) {
-    const { content, file, cloudinary_url } = this.state;
+    const { content, cloudinary_url } = this.state;
     const { user_id } = this.props.user.user;
     console.log("staaaaaaate", this.state);
 
+    // if ((this.props.post.post = null))
     axios
       .post("/api/posts", {
         post_content: content,
-        file: file,
+
         cloudinary_url: cloudinary_url,
         user_id: user_id
       })
       .then(posts => {
-        this.props.setPost(posts.data.reverse());
+        this.props.setPost(posts.data);
         // this.props.history.push("/dashboard");
         this.setState({
           content: "",
-          file: ""
+
+          cloudinary_url: ""
         });
+
+        alert("file is uploading! this might take a few minutes");
       });
   }
 
   render() {
-    console.log(this.props);
+    console.log("THIS DOT PROPS", this.props);
+    console.log(this.state);
     // const { profile_pic } = this.props.user.user;
-
+    const { cloudinary_url } = this.state;
     return (
       <div className="form-container">
         {/* <img src={profile_pic} alt="" /> */}
@@ -100,27 +118,41 @@ class PostForm extends Component {
           value={this.state.content}
           className="post-input"
           onChange={e => this.postHandler(e)}
-          placeholder="your post goes here"
+          placeholder="post something new..."
         />
-        {/* <input
-          value={this.state.file}
-          placeholder="file goes here"
-          onChange={e => this.fileHandler(e)}
-        /> */}
-        <Dropzone onDrop={this.onImageDrop} accept="image/*" multiple={false}>
-          {({ getRootProps, getInputProps }) => (
-            <section>
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <p id="dropzone">Click to select files, or drop file here</p>
-              </div>
-            </section>
-          )}
-        </Dropzone>
-        <br />
+
+        {!cloudinary_url[0] ? (
+          <Dropzone
+            onDrop={this.onImageDrop}
+            accept={["image/*", "video/*", "audio/*"]}
+            multiple={false}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <section>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p id="dropzone">Click to select files, or drop file here</p>
+                </div>
+              </section>
+            )}
+          </Dropzone>
+        ) : (
+          <img className="preview" src={cloudinary_url[0]} alt="" />
+        )}
+        {/* {!this.state.isLoading ? null :  */}
+        {/* {!cloudinary_url.length > 0 ? (
+          <div>
+            <img
+              id="loading"
+              src="https://media0.giphy.com/media/VlJkP9Vxi4nkI/giphy.gif"
+              alt="Uploading file... this might take a few minutes!"
+            />
+          </div>
+        ) : ( */}
         <button className="post-btn" onClick={e => this.createPost(e)}>
           post
         </button>
+        {/* )} */}
       </div>
     );
   }

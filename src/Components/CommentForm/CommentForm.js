@@ -25,7 +25,7 @@ class CommentForm extends Component {
     const { comment } = this.state;
     // find where these come from! --->
     const { comment_id, user_post } = this.props;
-    console.log("another label!", this.props);
+    // console.log("another label!", this.props);
     console.log("I am your MOTHER!", user_post);
 
     axios
@@ -35,8 +35,8 @@ class CommentForm extends Component {
         user_post: user_post
       })
       .then(comment => {
-        console.log("I am your father!!!", comment);
-
+        // console.log("I am your father!!!", comment);
+        this.props.getComment();
         this.props.setComment(comment.data.reverse());
         this.setState({
           comment: ""
@@ -44,16 +44,16 @@ class CommentForm extends Component {
       });
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
-      <div>
+      <div className="comment-form">
         <input
           value={this.state.comment}
           placeholder="Comment here..."
           onChange={e => this.commentHandler(e)}
         />
-        <button onClick={e => this.comment(e)}>save</button>
+        <button onClick={e => this.comment(e)}>save comment</button>
       </div>
     );
   }

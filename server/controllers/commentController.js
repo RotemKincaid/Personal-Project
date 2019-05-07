@@ -24,6 +24,8 @@ module.exports = {
     //   id: 1
     // };
     const userId = req.session.user.user_id;
+    console.log("USER ID", userId);
+
     // console.log(typeof user_post);
     db.comment_on_post([comment, userId, user_post])
       .then(comments => {
@@ -66,17 +68,23 @@ module.exports = {
       });
   },
   deleteComment: (req, res) => {
-    let { id } = req.params;
+    let { comment_id } = req.params;
+    let { post_id } = req.query;
 
-    if (!parseInt(id)) {
-      return res
-        .status(400)
-        .send({ message: "an error in delete_comment sql" });
-    }
-    id = parseInt(id);
+    console.log(comment_id);
+    console.log(post_id);
+
+    // if (!parseInt(comment_id)) {
+    //   return res
+    //     .status(400)
+    //     .send({ message: "an error in delete_comment sql" });
+    // }
+
     const db = req.app.get("db");
-    db.delete_comment([id])
+    db.delete_comment([comment_id, post_id])
       .then(comments => {
+        console.log(comments);
+
         res.status(200).send(comments);
       })
       .catch(err => {

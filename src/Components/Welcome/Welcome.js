@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import logo2 from "../Welcome/stagerlogo copy.png";
 import "../Welcome/Welcome.scss";
 
 class Welcome extends Component {
@@ -26,11 +27,12 @@ class Welcome extends Component {
             <br />
             <div className="link-btn">
               <button className="to-dash">
-                <Link to="/dashboard">See what's going on</Link>
+                <Link to="/dashboard">See what's going on!</Link>
               </button>
             </div>
           </div>
         </div>
+        <div>{/* <img className="logo2" src={logo2} /> */}</div>
       </div>
     );
   }

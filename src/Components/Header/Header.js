@@ -1,21 +1,38 @@
 import React, { Component } from "react";
-import logo from "../Header/newest-logo.png";
+import logo from "../Header/stagerlogo.png";
 // import routes from "../../routes";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/userReducer";
+import burgerMenu from "../Header/menu.png";
 
 import "../Header/Header.scss";
 import axios from "axios";
 
 class Header extends Component {
-  // constructor(){
-  //   super()
+  constructor() {
+    super();
 
-  //   this.state = {
-  //     is
-  //   }
-  // }
+    this.state = {
+      toggle: false
+    };
+  }
+
+  toggleSideBar = () => {
+    this.setState(prevState => {
+      console.log(this.state.toggle);
+      return {
+        toggle: !prevState.toggle
+      };
+    });
+  };
+
+  logout = () => {
+    axios.get("/auth/logout").then(() => {
+      this.props.setUser({});
+    });
+  };
+
   componentDidMount() {
     axios.get("/auth/usersession").then(res => {
       // this.props.setUser(res.data);
@@ -26,17 +43,34 @@ class Header extends Component {
       console.log(">>>>>", res.data);
     });
   }
+
   render() {
-    const { user } = this.props;
-    console.log("NEW LABEL", this.props.user.user);
+    const { username } = this.props.user.user;
+    console.log("NEW LABEL", this.props.user);
     return (
       <div className="header-container">
         <Link to="/">
           <img src={logo} alt="" />
         </Link>
-        <h1>{user.username}</h1>
+        {username ? (
+          <h1 className="logged-in">{username} is logged in!</h1>
+        ) : null}
 
-        <nav>
+        <div className="button-container">
+          <button
+            className="toggle-sidebar"
+            onClick={() => this.toggleSideBar()}
+          >
+            {/* I am the button! */}
+            {!this.state.toggle ? (
+              <img className="menu" src={burgerMenu} />
+            ) : (
+              <img className="menu" src={burgerMenu} />
+            )}
+          </button>
+        </div>
+
+        <nav className={this.state.toggle ? "show" : null}>
           <ul>
             <li>
               <Link to="/dashboard">Dashboard</Link>
@@ -52,12 +86,21 @@ class Header extends Component {
           </ul>
         </nav>
         <div className="btns">
-          <button className="login-btn">
-            <Link to="/login">Login</Link>
-          </button>
-          <button className="register-btn">
-            <Link to="/register">Register</Link>
-          </button>
+          {username ? (
+            <button className="logout-btn" onClick={() => this.logout()}>
+              <Link to="/login">Logout</Link>
+            </button>
+          ) : (
+            <div>
+              {" "}
+              <button className="login-btn">
+                <Link to="/login">Login</Link>
+              </button>
+              <button className="register-btn">
+                <Link to="/register">Register</Link>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );

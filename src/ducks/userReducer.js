@@ -1,6 +1,6 @@
 // import axios from "axios";
 const initialState = {
-  user: null
+  user: {}
 };
 
 const SET_USER = "SET_USER";

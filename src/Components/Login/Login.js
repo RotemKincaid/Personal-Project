@@ -8,7 +8,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
+      userName: "",
       password: "",
       loggedInUser: {}
     };
@@ -16,8 +16,8 @@ class Login extends Component {
   }
 
   async login() {
-    let { username, password } = this.state;
-    axios.post("auth/login", { username, password }).then(res => {
+    let { userName, password } = this.state;
+    axios.post("auth/login", { userName, password }).then(res => {
       this.props.setUser(res.data);
       //   this.setState({
       //     loggedInUSer: res.data,
@@ -40,8 +40,9 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props);
-    let { loggedInUser, username, password } = this.state;
+    console.log("CHECK THIS OUT", this.props);
+    let { userName, password } = this.state;
+    const { username } = this.props.user.user;
     return (
       <div className="login-outer">
         <div className="login-inner">
@@ -50,8 +51,8 @@ class Login extends Component {
 
           <input
             placeholder="stagername"
-            name="username"
-            value={username}
+            name="userName"
+            value={userName}
             onChange={e => this.changeHandler(e.target.name, e.target.value)}
           />
 
@@ -63,13 +64,18 @@ class Login extends Component {
             onChange={e => this.changeHandler(e.target.name, e.target.value)}
           />
 
-          {loggedInUser.username ? (
+          {/* {username ? (
             <button onClick={() => this.logout()}>Logout</button>
-          ) : (
-            <button onClick={() => this.login()}>
-              <Link to="/dashboard">Login</Link>
-            </button>
-          )}
+          ) : ( */}
+          <button className="login" onClick={() => this.login()}>
+            <Link to="/dashboard">Login</Link>
+          </button>
+          <button className="register">
+            <Link to="/register">
+              Don't have an account yet? Register here!
+            </Link>
+          </button>
+          {/* )} */}
         </div>
       </div>
     );

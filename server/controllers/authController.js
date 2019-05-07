@@ -28,21 +28,26 @@ module.exports = {
   },
 
   login: async (req, res) => {
-    const { username, password } = req.body;
+    const { userName, password } = req.body;
     const db = req.app.get("db");
+    console.log(req.body);
 
-    let userFound = await db.check_user_exists(username);
+    let userFound = await db.check_user_exists(userName);
     if (!userFound[0]) {
       res.status(200).send("username not found, please try again!");
     }
-    let result = bcrypt.compare(password, userFound[0].hashed_password);
     console.log(userFound);
+    let result = bcrypt.compare(password, userFound[0].hashed_password);
 
     if (result) {
       req.session.user = {
         user_id: userFound[0].user_id,
         username: userFound[0].username,
-        profile_pic: userFound[0].profile_pic
+        profile_pic_cloud: userFound[0].profile_pic_cloud,
+        talent: userFound[0].talent,
+        fullName: userFound[0].fullName,
+        genre: userFound[0].genre,
+        influence: userFound[0].influence
       };
       res.status(200).send(req.session.user);
     } else {
@@ -58,10 +63,17 @@ module.exports = {
   addInfo: (req, res) => {
     console.log(req.body);
     const db = req.app.get("db");
-    const { fullName, talent, genre, influence, profile_pic } = req.body;
+    const { fullName, talent, genre, influence, profile_pic_cloud } = req.body;
     const { id } = req.params;
 
-    db.update_user([fullName, talent, genre, influence, profile_pic, id]);
+    db.update_user([
+      fullName,
+      talent,
+      genre,
+      influence,
+      profile_pic_cloud[0],
+      id
+    ]);
   },
   getProfile: (req, res) => {
     const db = req.app.get("db");

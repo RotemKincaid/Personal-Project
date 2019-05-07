@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Post from "../Post/Post";
 import PostForm from "../PostForm/PostForm";
-import CommentForm from "../CommentForm/CommentForm";
-import Comment from "../Comment/Comment";
+// import CommentForm from "../CommentForm/CommentForm";
+// import Comment from "../Comment/Comment";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setPost } from "../../ducks/postReducer";
@@ -17,24 +17,25 @@ class Dashboard extends Component {
 
   getAllPosts = () => {
     axios.get("/api/posts").then(posts => {
-      //
-      this.props.setPost(posts.data.reverse());
+      console.log("THIS IS WHAT YOU ARE LOOKING FOR~!!!", posts);
+
+      this.props.setPost(posts.data);
     });
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { post } = this.props.post;
 
     const mappedPosts = post.map(post => {
-      console.log(post);
+      // console.log(post);
       return (
         <div key={post.post_id}>
           <Post
             post_id={post.post_id}
             content={post.post_content}
-            file={post.file}
-            profile_pic={post.profile_pic}
+            // file={post.file}
+            profile_pic_cloud={post.profile_pic_cloud}
             username={post.username}
             created_at={post.created_at}
             cloudinary_url={post.cloudinary_url}

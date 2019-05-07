@@ -54,9 +54,9 @@ module.exports = {
         .send({ message: "Invalid or missing 'id' on request" });
     }
 
-    const { post_content, file } = req.body;
+    const { post_content, cloudinary_url } = req.body;
 
-    db.edit_post([post_content, file])
+    db.edit_post([post_content, cloudinary_url])
       .then(posts => {
         res.status(200).send(posts);
       })
@@ -85,6 +85,29 @@ module.exports = {
         res
           .status(500)
           .send({ message: "An error has occurred on the server" });
+      });
+  },
+  getPostByUser: (req, res) => {
+    const { user_id } = req.params;
+
+    if (!parseInt(user_id)) {
+      return res
+        .status(400)
+        .send({ message: "Invalid or missing 'id' on request" });
+    }
+    user_id = parseInt(id);
+
+    const db = req.app.get("db");
+
+    db.get_posts_by_user([user_id])
+      .then(posts => {
+        res.status(200).send(posts);
+      })
+      .catch(err => {
+        console.log("error in get_posts_by_user.sql", err);
+        res
+          .status(500)
+          .send({ message: "an error has occured on the server!!!" });
       });
   }
 };

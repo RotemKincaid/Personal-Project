@@ -12,19 +12,48 @@
   // align-items: center;
   // justify-content: center;
 
-  img {
-    height: 60px;
-    width: 70px;
-    border-radius: 10px;
+  .username {
+    height: 30px;
+    min-width: 80px;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+  }
+
+  .profile-pic-post {
+    min-height: 70px;
+    max-width: 70px;
+    border-radius: 50%;
+  }
+
+  .video-player {
+    height: 450px;
+    width: 600px;
+    background-color: rgba(0, 0, 0, 0.26);
+  }
+
+  .audio {
+    height: 50px;
+    width: 220px;
+
+    border-radius: 30px;
   }
 
   #cloud {
-    height: 100px;
-    width: 100px;
+    max-width: 450px;
+    max-height: 500px;
   }
 
   .user-time {
     display: flex;
     justify-content: space-between;
+  }
+
+  .delete-post {
+    background-color: red;
+    color: white;
   }
 }

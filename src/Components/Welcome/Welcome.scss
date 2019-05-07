@@ -3,8 +3,11 @@
   width: 100%;
   background-image: url("./Stage-With-Colored-Lights.jpg");
   background-size: cover;
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   .inner-container {
     max-width: 800px;
@@ -18,7 +21,7 @@
   h1 {
     color: white;
     font-size: 46px;
-    padding: 10px;
+    padding: 20px;
   }
 
   p {
@@ -26,7 +29,7 @@
     color: white;
     text-emphasis: emphasis;
     font-size: 20px;
-    padding: 15px;
+    padding: 20px;
   }
   .login {
     height: 40px;
@@ -43,6 +46,10 @@
       font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
     }
+
+    &:hover {
+      box-shadow: 6px 5px 5px white;
+    }
   }
   .register {
     height: 40px;
@@ -57,6 +64,9 @@
       font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
     }
+    &:hover {
+      box-shadow: 6px 5px 5px white;
+    }
   }
   .link-btn {
     height: 25px;
@@ -68,14 +78,34 @@
   }
   .to-dash {
     height: 25px;
+    // margin-right: 5px;
     // width: 120;
+    margin: 20px;
     background-color: rgba(250, 245, 250, 0.37);
     // margin-right: 10px;
     a {
       text-decoration: none;
-      color: blue;
+      color: black;
       font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
+      &:hover {
+        color: white;
+      }
     }
+
+    &:hover {
+      background-color: black;
+      color: white;
+      box-shadow: 4px 2px 2px red;
+    }
+  }
+
+  .logo2 {
+    height: 150px;
+    width: 150px;
+    background-color: rgba(90, 83, 83, 0.342);
+    border-radius: 10px;
+
+    margin-top: 100px;
   }
 }

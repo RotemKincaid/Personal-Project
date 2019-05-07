@@ -75,7 +75,7 @@ class Register extends Component {
           <br />
           <div className="btns">
             <button type="submit" onClick={this.register}>
-              <Link to="/profileform">complete your profile now?</Link>
+              <Link to="/userprofile">complete your profile now?</Link>
             </button>
             <button>
               <Link to="/dashborad">go to dashboard</Link>
