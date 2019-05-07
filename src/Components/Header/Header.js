@@ -50,7 +50,7 @@ class Header extends Component {
     return (
       <div className="header-container">
         <Link to="/">
-          <img src={logo} alt="" />
+          <img className="logo" src={logo} alt="" />
         </Link>
         {username ? (
           <h1 className="logged-in">{username} is logged in!</h1>
@@ -91,7 +91,7 @@ class Header extends Component {
               <Link to="/login">Logout</Link>
             </button>
           ) : (
-            <div>
+            <div className="btns">
               {" "}
               <button className="login-btn">
                 <Link to="/login">Login</Link>

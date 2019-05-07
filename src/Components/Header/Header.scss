@@ -16,9 +16,27 @@
 
   .logged-in {
     color: purple;
+    @media (max-width: 700px) {
+      font-size: 12px;
+    }
   }
   .toggle-sidebar {
     display: none;
+
+    //  .toggle-sidebar {
+    height: 40px;
+    width: 50px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    box-shadow: 1px 3px 5px blue;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.26);
   }
   // .menu {
   //   // display: none;
@@ -32,8 +50,8 @@
     margin-left: 50px;
 
     @media (max-width: 700px) {
-      height: 100px;
-      width: 125px;
+      height: 130px;
+      width: 135px;
       margin-left: 5px;
     }
   }
@@ -81,6 +99,12 @@
       a {
         color: white;
       }
+
+      @media (max-width: 700px) {
+        height: 25px;
+        width: 65px;
+        font-size: 12px;
+      }
     }
 
     .register-btn {
@@ -99,6 +123,11 @@
       a {
         color: black;
       }
+      @media (max-width: 700px) {
+        height: 25px;
+        width: 65px;
+        font-size: 12px;
+      }
     }
 
     .logout-btn {
@@ -113,15 +142,24 @@
       @media (max-width: 700px) {
         height: 25px;
         width: 40px;
-        font-size: 10px;
+        font-size: 9px;
         display: flex;
         align-items: center;
+        justify-content: center;
       }
     }
 
     a {
       text-decoration: none;
     }
+  }
+
+  .btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 20px;
   }
 }
 
@@ -146,34 +184,15 @@
     transform: translate(300px, 0);
     transition: 0.3s;
   }
-  .logged-in {
-    font-size: 15px;
-  }
 
-  .toggle-sidebar {
-    height: 40px;
-    width: 50px;
-    position: fixed;
-    right: 20px;
-    top: 20px;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10%;
-    box-shadow: 1px 3px 5px blue;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.26);
+  // .menu {
+  //   transform: translate(0, 0);
+  //   height: 100%;
+  //   width: 100%;
+  //   margin: 0 auto;
+  // }
+}
 
-    // .menu {
-    //   transform: translate(0, 0);
-    //   height: 100%;
-    //   width: 100%;
-    //   margin: 0 auto;
-    // }
-  }
-
-  .show {
-    transform: translate(0, 0);
-  }
+.show {
+  transform: translate(0, 0);
 }

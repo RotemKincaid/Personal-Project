@@ -21,10 +21,22 @@
     flex-direction: column;
     border-radius: 10px;
 
+    @media (max-width: 700px) {
+      width: 300px;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      margin: 15px;
+    }
+
     h1 {
       font-size: 50px;
       color: white;
       text-shadow: cornflowerblue;
+
+      @media (max-width: 700px) {
+        font-size: 40px;
+      }
     }
 
     input {
@@ -33,6 +45,14 @@
       font-size: 20px;
       padding: 10px;
       margin: 10px;
+
+      @media (max-width: 700px) {
+        height: 40px;
+        width: 250px;
+        font-size: 15px;
+        padding: 10px;
+        margin: 10px;
+      }
     }
 
     button {
@@ -49,6 +69,15 @@
         font-size: 14px;
         color: blue;
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+
+      @media (max-width: 700px) {
+        height: 35px;
+        width: 90px;
+
+        a {
+          font-size: 12px;
+        }
       }
     }
   }
