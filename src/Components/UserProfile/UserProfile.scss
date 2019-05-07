@@ -32,7 +32,7 @@
       // display: flex;
       // justify-content: center;
       height: 300px;
-      width: 300px;
+      width: auto;
       // #resizemode: contain;
 
       #dropzone {
@@ -51,7 +51,7 @@
       }
       .cloudinary-profile {
         height: 300px;
-        width: 300px;
+        width: auto;
         border-radius: 15px;
       }
 
@@ -88,6 +88,11 @@
         font-size: 25px;
         padding-bottom: 15px;
       }
+
+      h3 {
+        font-size: 15px;
+        text-overflow: inherit;
+      }
     }
 
     .container-under {
@@ -102,13 +107,24 @@
         background-color: orange;
         font-size: 25px;
         color: black;
+        margin-bottom: 30px;
 
-        // a {
-        //   text-decoration: none;
-        //   font-size: 25px;
-        //   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        //   color: black;
-        // }
+        a {
+          text-decoration: none;
+          font-size: 25px;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          color: black;
+        }
+      }
+      .edit-profile {
+        height: 70px;
+        width: 230px;
+        background-color: rgb(240, 81, 240);
+        border-radius: 15px;
+        font-size: 25px;
+        color: black;
+        margin-bottom: 30px;
       }
     }
 

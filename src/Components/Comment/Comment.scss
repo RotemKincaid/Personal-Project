@@ -7,10 +7,15 @@
   border-radius: 10px;
   font-size: 15px;
 
+  @media (max-width: 700px) {
+    height: 100%;
+    width: 100%;
+  }
+
   .comments {
     color: white;
     min-height: 50px;
-    width: 900px;
+    width: 100%;
     // border-width: 2ch;
     // border-color: black;
 
@@ -22,6 +27,10 @@
     margin-top: 15px;
     margin-right: 8px;
     margin-left: 20px;
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
 
     .content-and-delete {
       display: flex;

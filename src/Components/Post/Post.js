@@ -51,13 +51,13 @@ class Post extends Component {
     });
   };
 
-  editPost = post_id => {
-    const { content } = this.props.post;
+  // editPost = post_id => {
+  //   const { content } = this.props.post;
 
-    axios.put(`/api/posts/${content}?post_id=${post_id}`).then(post => {
-      this.props.setPost(post.data.reverse());
-    });
-  };
+  //   axios.put(`/api/posts/${content}?post_id=${post_id}`).then(post => {
+  //     this.props.setPost(post.data.reverse());
+  //   });
+  // };
 
   toggle = post_id => {
     this.setState({
@@ -131,10 +131,12 @@ class Post extends Component {
             this.fileChecker(cloudinary_url) === "quicktime" ? (
             <div>
               <ReactPlayer
-                url={cloudinary_url}
                 className="video-player"
+                url={cloudinary_url}
                 playing={false}
                 controls={true}
+                height="100%"
+                width="100%"
               />
             </div>
           ) : (

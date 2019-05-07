@@ -27,7 +27,8 @@ class UserProfile extends Component {
       influence: "",
       profile_pic_cloud: "",
       // cloudinary_url: [],
-      uploadedFile: ""
+      uploadedFile: "",
+      isEditing: false
     };
   }
 
@@ -113,8 +114,16 @@ class UserProfile extends Component {
     });
   };
 
+  editHandler = e => {
+    this.setState({
+      isEditing: true
+    });
+  };
+
   submit = e => {
     const { user_id } = this.props.user.user;
+    console.log(this.props.user.user);
+
     const {
       fullName,
       talent,
@@ -123,12 +132,24 @@ class UserProfile extends Component {
       profile_pic_cloud
     } = this.state;
     e.preventDefault();
-    axios.put(`/api/userprofile/${user_id}`, {
-      fullName,
-      talent,
-      genre,
-      influence,
-      profile_pic_cloud
+
+    let updateUserValues = {
+      fullName: fullName !== "" ? fullName : this.props.user.user.fullName,
+      talent: talent !== "" ? talent : this.props.user.user.talent,
+      genre: genre !== "" ? genre : this.props.user.user.genre,
+      influence: influence !== "" ? influence : this.props.user.user.influence,
+      profile_pic_cloud:
+        profile_pic_cloud !== ""
+          ? profile_pic_cloud
+          : this.props.user.user.profile_pic_cloud
+    };
+    console.log("SEAN", updateUserValues);
+
+    axios.put(`/api/userprofile/${user_id}`, updateUserValues).then(profile => {
+      console.log("PROFILE", profile);
+
+      this.props.setUser(profile.data);
+      this.getMyProfile();
     });
     // this.setState({
     //   fullName: "",
@@ -153,38 +174,38 @@ class UserProfile extends Component {
     //   user ? console.log("USER?", user.full_name) : console.log("no user");
     // }
     const { user } = this.props.user;
-    const { post } = this.props.post;
-    const { comment } = this.props.comment;
-    const mappedUserPosts = post.map(post => {
-      return (
-        <div key={post.post_id}>
-          <UsersPosts
-            post_id={post.post_id}
-            content={post.post_content}
-            // file={post.file}
-            profile_pic_cloud={post.profile_pic_cloud}
-            username={post.username}
-            created_at={post.created_at}
-            cloudinary_url={post.cloudinary_url}
-          />
-          <Comment
-            comments={comment.comments}
-            comment_id={comment.comment_id}
-            post_id={comment.post_id}
-            getComment={this.getComment}
-          />
-          {/* <CommentForm />
-          <Comment comment={this.props.comment.comment} /> */}
-        </div>
-      );
-    });
+    // const { post } = this.props.post;
+    // const { comment } = this.props.comment;
+    // const mappedUserPosts = post.map(post => {
+    //   return (
+    //     <div key={post.post_id}>
+    //       <UsersPosts
+    //         post_id={post.post_id}
+    //         content={post.post_content}
+    //         // file={post.file}
+    //         profile_pic_cloud={post.profile_pic_cloud}
+    //         username={post.username}
+    //         created_at={post.created_at}
+    //         cloudinary_url={post.cloudinary_url}
+    //       />
+    //       <Comment
+    //         comments={comment.comments}
+    //         comment_id={comment.comment_id}
+    //         post_id={comment.post_id}
+    //         getComment={this.getComment}
+    //       />
+    //       {/* <CommentForm />
+    //       <Comment comment={this.props.comment.comment} /> */}
+    //     </div>
+    //   );
+    // });
 
     return (
       <div className="user-profile">
         <div className="inner-user-profile">
           <h1 className="user-name">{user.username}'s Profile</h1>
           <div className="profile-pic">
-            {user.profile_pic_cloud ? (
+            {user.profile_pic_cloud && this.state.isEditing === false ? (
               <div>
                 <img
                   className="cloudinary-profile"
@@ -210,10 +231,18 @@ class UserProfile extends Component {
                 )}
               </Dropzone>
             )}
-            {/* {user.profile_pic_cloud ? ( */}
+            {/* {user.profile_pic_cloud && this.state.isEditing === true ? (
+              <div>
+              <img
+                className="cloudinary-profile"
+                src={user.profile_pic_cloud}
+              />
+              
+            </div>)
+            } */}
           </div>
           <div className="little-containers">
-            {user.full_name ? (
+            {user.full_name && this.state.isEditing === false ? (
               <div>
                 <h1>My full name is</h1>
                 <h3>{user.full_name}</h3>
@@ -227,7 +256,7 @@ class UserProfile extends Component {
                 />
               </div>
             )}
-            {user.talent ? (
+            {user.talent && this.state.isEditing === false ? (
               <div>
                 <h1>My talent is</h1>
                 <h3>{user.talent}</h3>
@@ -242,7 +271,7 @@ class UserProfile extends Component {
               </div>
             )}
 
-            {user.influence ? (
+            {user.influence && this.state.isEditing === false ? (
               <div>
                 <h1>My influence is</h1>
                 <h3>{user.influence}</h3>
@@ -257,7 +286,7 @@ class UserProfile extends Component {
               </div>
             )}
 
-            {user.genre ? (
+            {user.genre && this.state.isEditing === false ? (
               <div>
                 <h1>My genre is</h1>
                 <h3>{user.genre}</h3>
@@ -274,12 +303,19 @@ class UserProfile extends Component {
           </div>
           <br />
           <div className="container-under">
-            {user.full_name ? null : (
+            {this.state.isEditing === true ? (
               <button
                 className="complete-profile"
                 onClick={e => this.submit(e)}
               >
                 <Link to="/userprofile">Complete Profile! </Link>
+              </button>
+            ) : (
+              <button
+                className="edit-profile"
+                onClick={e => this.editHandler(e)}
+              >
+                Edit Profile
               </button>
             )}
             {/* <div className="my-posts">
@@ -302,7 +338,7 @@ class UserProfile extends Component {
         )} */}
           {/* <div>This is your completed profile</div> */}
 
-          <div className="myPosts">{mappedUserPosts}</div>
+          {/* <div className="myPosts">{mappedUserPosts}</div> */}
         </div>
       </div>
     );

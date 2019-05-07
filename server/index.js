@@ -25,6 +25,8 @@ massive(CONNECTION_STRING).then(db => {
   console.log("Connected to db");
 });
 
+app.use(express.static(`${__dirname}/../build`));
+
 // auth paths:
 
 app.post("/auth/login", aC.login);
@@ -74,6 +76,11 @@ app.get("/api/upload", (req, res) => {
     timestamp: timestamp
   };
   res.json(payload);
+});
+
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
 });
 
 app.listen(

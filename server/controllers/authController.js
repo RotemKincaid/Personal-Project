@@ -80,6 +80,7 @@ module.exports = {
     const { id } = req.params;
 
     db.get_user_profile([id]).then(user => {
+      console.log("user ===>", user);
       res.status(200).send(user);
     });
   }

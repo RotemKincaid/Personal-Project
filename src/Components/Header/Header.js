@@ -4,7 +4,7 @@ import logo from "../Header/stagerlogo.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser } from "../../ducks/userReducer";
-import burgerMenu from "../Header/menu.png";
+import burgerMenu from "../Header/menu3.png";
 
 import "../Header/Header.scss";
 import axios from "axios";

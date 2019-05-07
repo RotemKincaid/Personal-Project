@@ -101,7 +101,7 @@ class PostForm extends Component {
           cloudinary_url: ""
         });
 
-        alert("file is uploading! this might take a few minutes");
+        // alert("file is uploading! this might take a few minutes");
       });
   }
 
