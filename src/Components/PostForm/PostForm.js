@@ -41,7 +41,11 @@ class PostForm extends Component {
       if (file.type === "audio/mp3" || file.type === "audio/wav") {
         CLOUDINARY_UPLOAD_URL =
           "https://api.cloudinary.com/v1_1/durwtlqt9/video/upload";
-      } else if (file.type === "video/mp4" || file.type === "video/quicktime") {
+      } else if (
+        file.type === "video/mp4" ||
+        file.type === "video/quicktime" ||
+        file.type === "video/MOV"
+      ) {
         CLOUDINARY_UPLOAD_URL =
           "https://api.cloudinary.com/v1_1/durwtlqt9/video/upload";
       } else {

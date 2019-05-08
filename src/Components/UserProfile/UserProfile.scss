@@ -12,8 +12,8 @@
     // padding-bottom: 150px;
     flex-direction: column;
     margin: auto;
-    min-width: 900px;
-    min-height: 150vh; // background-color: aqua;
+    width: 100%;
+    min-height: 100%; // background-color: aqua;
     .user-name {
       font-size: 30px;
       height: 50px;
@@ -51,7 +51,7 @@
       }
       .cloudinary-profile {
         height: 300px;
-        width: auto;
+        width: 100%;
         border-radius: 15px;
       }
 
@@ -70,6 +70,10 @@
       justify-content: space-between;
       flex-direction: row;
       margin: 10px;
+
+      @media (max-width: 700px) {
+        flex-direction: column;
+      }
     }
     .little-containers div {
       height: 250px;
@@ -125,6 +129,11 @@
         font-size: 25px;
         color: black;
         margin-bottom: 30px;
+
+        @media (max-width: 700px) {
+          height: 40px;
+          font-size: 15px;
+        }
       }
     }
 

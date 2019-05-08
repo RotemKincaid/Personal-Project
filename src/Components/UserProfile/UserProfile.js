@@ -37,16 +37,16 @@ class UserProfile extends Component {
   }
 
   getMyProfile = user_id => {
-    axios.get(`/api/userprofile/${user_id}`).then(user => {
+    axios.get(`/user/profile/${user_id}`).then(user => {
       this.props.setUser(user.data);
     });
   };
 
-  getMyPosts = id => {
-    axios.get(`/api/posts/${id}`).then(posts => {
-      this.props.setPost(posts.data.reverse());
-    });
-  };
+  // getMyPosts = id => {
+  //   axios.get(`/api/posts/${id}`).then(posts => {
+  //     this.props.setPost(posts.data.reverse());
+  //   });
+  // };
 
   onImageDrop = files => {
     console.log("onImageDrop FILES", files);
@@ -161,7 +161,7 @@ class UserProfile extends Component {
   };
 
   render() {
-    console.log("LABEL", this.props.post);
+    console.log("LABEL", this.props);
 
     const {
       fullName,

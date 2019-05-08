@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Register from "./Components/Register/Register";
 // import ProfileForm from "./Components/ProfileForm/ProfileForm";
+import Chat from "./Components/Chat/Chat";
 
 export default (
   <Switch>
@@ -14,6 +15,7 @@ export default (
     <Route path="/login" component={Login} />
     <Route path="/register" component={Register} />
     {/* <Route path="/profileform" component={ProfileForm} /> */}
+    <Route path="/chat" component={Chat} />
     <Route path="/userprofile" component={UserProfile} />
   </Switch>
 );

@@ -25,12 +25,12 @@
 
     @media (max-width: 700px) {
       //  .toggle-sidebar {
-      height: 65px;
-      width: 75px;
+      height: 60px;
+      width: 68px;
       position: fixed;
       right: 15px;
       top: 28px;
-      z-index: 2;
+      z-index: 3;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -44,6 +44,10 @@
       .menu {
         height: 100%;
         width: 100%;
+        background-color: rgba(255, 255, 255, 0.527);
+        border-radius: 20px;
+        cursor: pointer;
+        z-index: 2;
       }
     }
   }
