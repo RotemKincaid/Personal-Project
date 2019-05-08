@@ -3,6 +3,14 @@
   min-height: 150vh;
   background-size: cover;
   background-attachment: fixed;
+  .please-log-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    padding: 10px;
+    color: purple;
+  }
 
   .inner-user-profile {
     display: flex;
@@ -51,7 +59,7 @@
       }
       .cloudinary-profile {
         height: 300px;
-        width: 100%;
+        width: auto;
         border-radius: 15px;
       }
 
@@ -121,6 +129,7 @@
           color: black;
         }
       }
+
       .edit-profile {
         height: 70px;
         width: 230px;

@@ -37,8 +37,8 @@ class Header extends Component {
     axios.get("/auth/usersession").then(res => {
       // this.props.setUser(res.data);
       axios.get(`/user/profile/${res.data.user_id}`).then(user => {
-        console.log("HEYYYYYY", user.data[0]);
-        this.props.setUser(user.data[0]);
+        console.log("HEYYYYYY", user.data);
+        this.props.setUser(user.data);
       });
       console.log(">>>>>", res.data);
     });

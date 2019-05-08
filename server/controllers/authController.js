@@ -66,22 +66,25 @@ module.exports = {
     const { fullName, talent, genre, influence, profile_pic_cloud } = req.body;
     const { id } = req.params;
 
-    db.update_user([
-      fullName,
-      talent,
-      genre,
-      influence,
-      profile_pic_cloud[0],
-      id
-    ]);
+    db.update_user([fullName, talent, genre, influence, profile_pic_cloud, id])
+      .then(user => {
+        res.status(200).send(user[0]);
+      })
+      .catch(err => {
+        console.log("an Error on the backend!", err);
+      });
   },
   getProfile: (req, res) => {
     const db = req.app.get("db");
     const { id } = req.params;
-
-    db.get_user_profile([id]).then(user => {
-      console.log("user ===>", user);
-      res.status(200).send(user);
-    });
+    console.log(req.params);
+    db.get_user_profile([id])
+      .then(user => {
+        console.log("user ===>", user);
+        res.status(200).send(user[0]);
+      })
+      .catch(err => {
+        console.log(">->->->", err);
+      });
   }
 };
