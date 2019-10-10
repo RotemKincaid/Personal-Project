@@ -94,17 +94,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 55px;
+    flex-direction: column;
+    margin-right: 40px;
+    @media (max-width: 700px) {
+      margin-right: 50px;
+    }
+    
 
     .login-btn {
-      height: 30px;
+      
+      height: 40px;
       width: 80px;
       background-color: rgb(207, 37, 7);
-      padding: 5px;
+      padding: 3px;
       color: white;
       font-size: 15px;
       cursor: pointer;
+      a {
+        height: 30px;
+        font-family: "Play", sans-serif;
+      }
       &:hover {
-        height: 35px;
+        height: 40px;
         text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
       }
 
@@ -113,30 +125,31 @@
       }
 
       @media (max-width: 700px) {
-        height: 25px;
         width: 65px;
         font-size: 12px;
       }
     }
 
     .register-btn {
-      height: 30px;
+      height: 40px;
       width: 80px;
       background-color: white;
       color: black;
       font-size: 15px;
+      padding: 3px;
       cursor: pointer;
       &:hover {
-        height: 35px;
+        height: 40px;
         text-shadow: 1px 1px 2px rgb(226, 147, 29), 0 0 1em rgb(61, 61, 63),
           0 0 0.2em blue;
       }
 
       a {
+        height: 30px;
         color: black;
+        font-family: "Play", sans-serif;
       }
       @media (max-width: 700px) {
-        height: 25px;
         width: 65px;
         font-size: 12px;
       }
@@ -165,14 +178,6 @@
     a {
       text-decoration: none;
     }
-  }
-
-  .btns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-right: 40px;
   }
 }
 
